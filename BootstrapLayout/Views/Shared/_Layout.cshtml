@@ -1,0 +1,126 @@
+﻿@inject SignInManager<ApplicationUser> _signInManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BootstrapLayout</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BootstrapLayout.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container-fluid  sticky-top">
+        <nav class="navbar navbar-expand-sm bg-white navbar-light border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-black" asp-action="index" asp-controller="home"> HOME</a>
+                        </li>
+                      @*  @if (_signInManager.IsSignedIn(User))
+                        {*@
+                            <li class="nav-item">
+                                <a class="nav-link text-black" asp-action="index" asp-controller="staff"> STAFF</a>
+                            </li>
+                            <li class="nav-itemk">
+                                <a class="nav-link text-black" asp-action="index" asp-controller="posts"> POSTS</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-black" asp-action="index" asp-controller="continents"> CONTINENTS</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-black" asp-action="index" asp-controller="home" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> REPORTS</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-action="index" asp-controller="reports" target="_blank"> RDLC</a>
+                                    <a class="dropdown-item" asp-action="word" asp-controller="reports" target="_blank">WORD LAYOUT</a>
+                                </div>
+
+                            </li>
+
+                       @* }*@
+
+                    </ul>
+                    <ul class="navbar-nav  mb-2  ml-auto">
+
+                        @if (_signInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item ">
+                                <form method="post" asp-action="signout">
+                                    <a class="nav-link text-black" asp-action="logout" asp-controller="account"> SIGN OUT @User.Identity.Name  </a>
+                                </form>
+
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-action="login" asp-controller="account" class="text-black">SIGN IN</a>
+                            </li>
+
+
+                            <li class="nav-item mx-lg-2">
+                                <a asp-action="register" asp-controller="account" class="text-black">REGISTER</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+
+        </main>
+    </div>
+
+    <footer class="footer" >
+
+        <div class="container-fluid border-top">
+            <div class="row">
+                <div class="col">
+                    <h5 class="text-center">About Us</h5>
+                    <ul class="text-center">
+                        <li><a>Our Leadership</a></li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Our Solutions</h5>
+                    <ul>
+                        <li><a>Pensions</a></li>
+                        <li><a>Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Online Services</h5>
+                    <ul>
+                        <li>
+                            <a>Zamara Online Portal</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a>Publications</a></li>
+                        <li><a>Blogs & Articles</a></li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        <div class="container text-center text-black my-0">
+            &copy; @DateTime.Now.Year ZAMARA | ALL RIGHTS RESERVED
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

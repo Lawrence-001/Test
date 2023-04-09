@@ -1,0 +1,37 @@
+﻿@model Staff
+@{
+    ViewData["Title"] = "Staff details";
+    var uploadedPhoto = "~/images/" + (Model.StaffPhoto ?? "no photo uploaded");
+}
+<div class="row ">
+    <div class="container-fluid col-lg-7 col-md-6 justify-content-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Staff Number</th>
+                    <th>Staff Name</th>
+                    <th>Staff Photo</th>
+                    <th>Staff Email</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.StaffNumber</td>
+                    <td>@Model.StaffName</td>
+                    <td><img src="@uploadedPhoto" style="width:90px" height="60px" class="rounded-4" asp-append-version="true"/></td>
+                    <td>@Model.StaffEmail</td>
+                    <td>@Model.Department</td>
+                    <td>@Model.Salary</td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="text-center">
+        <a asp-action="index" asp-controller="staff" asp-route-id="@Model.Id">Back to list</a>
+    </div>
+
+</div>

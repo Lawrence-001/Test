@@ -1,0 +1,28 @@
+﻿@model SignInVM;
+@{
+    ViewBag.Title = "SignIn";
+}
+<h3 class="text-center"> User Login</h3>
+
+<div class="container-fluid col-lg-5 col-md-6">
+    <form method="post">
+       
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div>
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div><br />
+        <div>
+            <button type="submit" class="btn btn-outline-success mb-2" asp-action="Login" asp-controller="account">SignIn</button>
+        </div>
+        <div><p>Not registed? <a asp-action="register" asp-controller="account">Register here</a></p> </div>
+
+
+    </form>
+</div>

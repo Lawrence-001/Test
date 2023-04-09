@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Staff>
+@{
+    ViewData["Title"] = "List of Staff";
+
+}
+
+
+<div class="text-center mb-2">
+    <a asp-action="addstaff" asp-controller="staff" class="btn btn-primary">Create new staff</a>
+</div>
+
+
+
+<div class="row ">
+    <div class="container-fluid col-lg-9 col-md-7 justify-content-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Staff Number</th>
+                    <th>Staff Name</th>
+                    <th>Staff Photo</th>
+                    <th>Staff Email</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th class="4">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var staff in Model)
+                {
+                    var uploadedPhoto = "~/images/" + (staff.StaffPhoto ?? "employee.png");
+                    <tr>
+                        <td>@staff.StaffNumber</td>
+                        <td>@staff.StaffName</td>
+                        <td><img src="@uploadedPhoto" style="width:100px" height="68px" class="rounded-4" asp-append-version="true" /></td>
+                        <td>@staff.StaffEmail</td>
+                        <td>@staff.Department</td>
+                        <td>@staff.Salary</td>
+                        <td class="4">
+                            <a asp-action="details" asp-controller="staff" asp-route-id="@staff.Id">Details</a> |
+                            <a asp-action="edit" asp-controller="staff" asp-route-id="@staff.Id">Edit</a> |
+
+                             <a asp-action="delete" asp-controller="staff" asp-route-id="@staff.Id" class="text-danger"> Delete</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

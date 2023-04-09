@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Post>
+@{
+    ViewData["Title"] = "Post";
+}
+
+<h4>Posts</h4>
+
+@foreach (Post post in Model)
+{
+    <h6>@post.Title</h6>
+    <p>@post.Body</p>
+}
